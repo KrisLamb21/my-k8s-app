@@ -17,7 +17,7 @@ jobs:
           name: Push Docker Image
           command: |
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-            docker push krislamb21/my-k8s-app:dev
+            docker push docker.io/krislamb21/my-k8s-app:dev
   deploy:
     docker:
       - image: python:3.8
