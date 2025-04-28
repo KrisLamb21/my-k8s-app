@@ -23,6 +23,6 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: krislamb21/my-k8s-app:latest
+        image: krislamb21/my-k8s-app:dev
         ports:
         - containerPort: 3000
