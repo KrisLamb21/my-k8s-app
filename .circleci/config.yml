@@ -14,12 +14,12 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t krislamb21/my-k8s-app:dev .
+            docker build -t KrisLamb21/my-k8s-app:dev .
       - run:
           name: Push Docker Image
           command: |
             echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-            docker push docker.io/krislamb21/my-k8s-app:dev
+            docker push docker.io/KrisLamb21/my-k8s-app:dev
   deploy:
     docker:
       - image: python:3.8
@@ -34,4 +34,4 @@ jobs:
       - run:
           name: Deploy to Kubernetes
           command: |
-            kubectl set image deployment/my-k8s-deployment my-container=krislamb21/my-k8s-app:dev
+            kubectl set image deployment/my-k8s-deployment my-container=KrisLamb21/my-k8s-app:dev
