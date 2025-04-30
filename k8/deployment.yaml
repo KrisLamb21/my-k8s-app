@@ -4,7 +4,7 @@ metadata:
   name: my-k8-deployement
   namespace: dev
   annotations:
-      circleci.com/project-id: 852b87a9-f5bc-4c9c-8d96-850a0149da41
+      circleci.com/project-id: 34b5068e-88b8-4062-804a-633ab5ce1622
   labels:
       circleci.com/component-name: my-k8s-app
       circleci.com/version: 1.0.0
