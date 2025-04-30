@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-k8-deployement
+  name: my-k8s-app
   namespace: dev
   annotations:
       circleci.com/project-id: 34b5068e-88b8-4062-804a-633ab5ce1622
@@ -22,6 +22,6 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: krislamb21/my-k8s-app:latest
+        image: krislamb21/my-k8s-app:dev
         ports:
         - containerPort: 3000
