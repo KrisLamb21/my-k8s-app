@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  node: circleci/node@5.1.0
 jobs:
   build:
     docker:
@@ -14,9 +12,24 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t krislamb21/my-k8s-app:qa .
+            docker build -t krislamb21/my-k8s-app:dev .
       - run:
           name: Push Docker Image
           command: |
-            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-            docker push krislamb21/my-k8s-app:qa
+            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+            docker push krislamb21/my-k8s-app:dev
+  deploy:
+    docker:
+      - image: python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Install kubectl
+          command: |
+            curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+            chmod +x ./kubectl
+            mv ./kubectl /usr/local/bin/kubectl
+      - run:
+          name: Deploy to Kubernetes
+          command: |
+            kubectl set image deployment/my-k8s-deployment my-container=krislamb21/my-k8s-app:dev
